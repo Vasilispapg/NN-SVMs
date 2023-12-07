@@ -1,2 +1,5 @@
 SVHN
 cifar-10-batches-py
+*.sav
+*.pkl
+*.csv

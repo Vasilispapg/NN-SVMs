@@ -19,12 +19,8 @@
 
 \maketitle
 
-\begin{abstract}
-This paper presents a comparative analysis of Support Vector Machine (SVM) models applied to two distinct datasets: CIFAR-10 and Letter Recognition. We evaluate the performance of different SVM kernels and parameters on these datasets and discuss the implications of using PCA (Principal Component Analysis) on model performance and training time.
-\end{abstract}
-
 \section{Introduction}
-SVMs are widely used in classification tasks due to their versatility and efficacy. In this study, we analyze their performance on the CIFAR-10 and Letter Recognition datasets, focusing on the impact of kernel choice, parameter tuning, and the use of PCA on model accuracy and training duration.
+In this study, we analyze their performance on the CIFAR-10 and Letter Recognition datasets, focusing on the impact of kernel choice, parameter tuning, and the use of PCA on model accuracy and training duration.
 
 \section{Methodology}
 The CIFAR-10 dataset consists of 50,000 32x32 color images in 10 classes, while the Letter Recognition dataset includes 20,000 instances of 26 capital letters in various fonts. We employed various SVM kernels: RBF, Polynomial (Poly), and Linear, with different settings for the hyperparameters C and gamma.
@@ -199,7 +195,7 @@ Linear & 1 & auto & 0.906875	 & 0.817187 & 0.816731 & 3.27099 \\ \hline
 \begin{table}[H]
 \centering
 \caption{SVM Performance on Letter Recognition without PCA (2000 of 20000 Data Batch)}
-
+\tiny
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 Kernel & C & Gamma & Train Acc & Test Acc & F1 Score & Time (min) \\ \hline
@@ -213,6 +209,7 @@ Linear & 0.1 & auto & 0.889583 & 0.82125 & 0.820917 & 3.53565 \\ \hline
 
 
 \begin{table}[H]
+\tiny
 \centering
 \caption{Optimal Performance of Different Kernels on CIFAR-10 Dataset}
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
@@ -226,6 +223,8 @@ Linear & 10.0 & 0.0001 & 1.0 & 0.3073 & 0.308494 & 414.259 & 4000 \\ \hline
 \end{tabular}
 \end{table}	
 
+
+
 \section{Classifier Performance Comparison}
 
 In this analysis, we examine the performance of K-Nearest Neighbors (KNN), Nearest Class Centroid (NCC), and Support Vector Machine (SVM) classifiers, focusing on a CIFAR-10 dataset subset of 4,000 data points. The performance metrics include training accuracy, testing accuracy, F1 score, and computational time.
@@ -236,6 +235,15 @@ In contrast, the KNN classifier, even when trained on a significantly larger dat
 
 This comparison underscores the SVM's superior efficacy in terms of testing accuracy and F1 score, even when trained on a smaller dataset. The KNN and NCC classifiers, while beneficial in scenarios requiring faster processing times or larger datasets, fall short in achieving the accuracy levels of the SVM models. These findings highlight the critical importance of selecting an appropriate classifier based on the specific requirements of accuracy, computational efficiency, and dataset size.
 
+\section{Impact of PCA on SVM Classifier Performance}
+
+This section delves into the effects of Principal Component Analysis (PCA) on the performance of Support Vector Machine (SVM) classifiers, specifically focusing on polynomial and radial basis function (RBF) kernels. The analysis is based on a CIFAR-10 dataset subset comprising 4,000 data points, with metrics including training accuracy, testing accuracy, F1 score, and computational time.
+
+For SVMs with a polynomial kernel, regardless of the hyperparameters C (1, 10, 100) and gamma (auto, 0.0001, 0.001), the models consistently achieved a perfect training accuracy of 1.0. However, the testing accuracy plateaued at approximately 0.3459, with an F1 score around 0.3467. Notably, the incorporation of PCA significantly reduced the computational time, with times ranging from approximately 8.9 to 9.0 seconds, a drastic reduction compared to non-PCA times.
+
+In contrast, SVMs employing the RBF kernel, across similar ranges of C and gamma, also reached perfect training accuracies but exhibited markedly lower testing accuracies and F1 scores (around 0.1 and 0.0182, respectively). The processing times for these models were notably higher, averaging around 29 seconds. This disparity in performance indicates that while PCA contributes to computational efficiency, its impact on model accuracy is highly dependent on the choice of the kernel.
+
+An interesting observation was made with the linear kernel SVMs. Despite the expectation of computational efficiency with PCA, the linear kernel models did not yield results even after an extended duration of approximately 300 minutes. This outcome suggests a potential limitation or inefficiency in the application of PCA when combined with the linear kernel in SVMs, especially for complex datasets like CIFAR-10.
 
 
 

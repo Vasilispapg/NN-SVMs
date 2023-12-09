@@ -21,7 +21,7 @@
 
 \section{Introduction}
 In this study, I analyze their performance on the CIFAR-10 and Letter Recognition datasets, focusing on the impact of kernel choice, parameter tuning, model train/test accuracy and training duration.
-
+Also, I compare the performance of the SVM models with other classifiers, such as K-Nearest Neighbors (KNN) and Nearest Class Centroid (NCC), to understand the relative strengths and weaknesses of each classifier.
 \section{Methodology}
 The CIFAR-10 dataset consists of 50,000 32x32 color images in 10 classes, while the Letter Recognition dataset includes 20,000 instances of 26 capital letters in various fonts. I employed various SVM kernels: RBF, Polynomial (Poly), and Linear, with different settings for the hyperparameters C and gamma.
 
@@ -36,9 +36,9 @@ The CIFAR-10 dataset consists of 50,000 32x32 color images in 10 classes, while 
 \subsection{Code Organization}
 
 \begin{itemize}
-\item I used 2 different notebooks for the 2 datasets.
-\item One notebook for the CIFAR-10 dataset and one for the Letter Recognition dataset.
-\item The notebook used to keep track of the results.
+\item I used two different notebooks for the two datasets.
+\item One notebook was dedicated to the CIFAR-10 dataset, and the other to the Letter Recognition dataset.
+\item The notebook was utilized to keep track of the results.
 \end{itemize}
 
 \subsection{Code Execution}
@@ -46,8 +46,8 @@ The CIFAR-10 dataset consists of 50,000 32x32 color images in 10 classes, while 
 \begin{itemize}
 \item The CIFAR-10 notebook was hard to run on my machine so in order to have some results I truncated the dataset to 2000, 4000 and 8000 instances.
 \item The Letter Recognition dataset was easier to run so I used 3 different batch sizes: 2000, 8000, 12000.
-
 i.e. 12000 is the 60\% of 20.000 from dataset.
+\item Additionally, I attempted to use GridSearchCV on the CIFAR-10 dataset, but it yielded no results due to excessive time consumption.
 \end{itemize}
 
 \subsection{Code Output}
@@ -55,6 +55,12 @@ i.e. 12000 is the 60\% of 20.000 from dataset.
 \begin{itemize}
 \item The code outputs the results in a table format.
 \item The results are either as an output of the code or commented as a markdown cell. 
+\end{itemize}
+
+\subsection{ChatGPT}
+
+\begin{itemize}
+\item ChatGPT was utilized to enhance the grammar and syntax of some sentences in this document.
 \end{itemize}
 
 \section{Data Specifications}
@@ -93,9 +99,6 @@ The varied data sizes in both datasets allowed us to discern critical insights i
 
 \subsubsection{Kernel Performance}
 In the CIFAR-10 dataset, the Poly kernel outperformed the RBF and Linear kernels in terms of classification accuracy. This indicates that the Poly kernel's ability to model complex, non-linear relationships in image data is particularly effective for the diverse and intricate patterns present in CIFAR-10's image set. The RBF kernel, while generally robust across various datasets, may not capture the specificities of image data as effectively as the Poly kernel in this context.
-
-\subsubsection{Overfitting Concerns}
-A significant observation was the disparity between high training accuracy and lower testing accuracy in many models. This suggests a tendency towards overfitting, where models are highly tuned to the training data and fail to generalize well to new, unseen data. This issue underscores the importance of implementing strategies to combat overfitting, such as regularization, cross-validation, or using more generalized models.
 
 \subsubsection{Impact of Hyperparameters}
 The performance variations with different settings of C and gamma parameters indicate the sensitivity of SVMs to these hyperparameters. Optimizing these parameters is crucial for achieving the best possible model performance. This suggests the need for a more rigorous hyperparameter tuning process, possibly employing grid search or randomized search methods.
